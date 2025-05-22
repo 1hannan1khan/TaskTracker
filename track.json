@@ -2,7 +2,7 @@
     {
         "id": 1,
         "description": "something",
-        "status": "todo",
+        "status": "in progress",
         "createdAt": "2025-05-20T19:31:02.867710",
         "updatedAt": "2025-05-20T19:31:02.867719"
     },
@@ -30,8 +30,15 @@
     {
         "id": 6,
         "description": "something",
-        "status": "todo",
+        "status": "in-progess",
         "createdAt": "2025-05-21T17:59:48.350664",
         "updatedAt": "2025-05-21T17:59:48.350675"
+    },
+    {
+        "id": 7,
+        "description": "finish project",
+        "status": "done",
+        "createdAt": "2025-05-22T16:59:59.470144",
+        "updatedAt": "2025-05-22T16:59:59.470154"
     }
 ]

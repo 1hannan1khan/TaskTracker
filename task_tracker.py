@@ -80,11 +80,41 @@ def update_task(id, updated_task):
     else:
         print("Invalid ID")
             
-def list_task():
-    pass
+def list_task(task = None):
+    tasks = load_tasks()
 
-def task_status():
-    pass
+    for i in tasks:
+        if task is None or task == i["status"]:
+            print(i["description"])
+        
+
+def task_status(id, task):
+    try:
+        id = int(id)
+    except ValueError:
+        print("ID must be an integer")
+        return
+
+    tasks = load_tasks()
+    found = False
+
+    for i in tasks:
+        if id == i["id"] and task == "in progress":
+            i["status"] = task
+            print(f"Task ({id}) successfully marked as in progress")
+            save_task(tasks)
+            found = True
+            break
+
+        elif id == i["id"] and task == "done":
+            i["status"] = task
+            print(f"Task ({id}) successfully marked as done")
+            save_task(tasks)
+            found = True
+            break
+        else:
+            print("Invalid, please mark it as 'done' or 'in progress'")
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -107,6 +137,17 @@ def main():
         task_id = inputs[1]
         updated_task = ' '.join(inputs[2:])
         update_task(task_id, updated_task)
+    
+    elif action == "list" and len(inputs) <= 1:
+        list_task()
+    elif action == "list" and len(inputs) <=2:
+        task = inputs[1]
+        list_task(task)
+
+    elif action == "mark" and len(inputs) >= 2:
+        task_id = inputs[1]
+        task = ' '.join(inputs[2:])
+        task_status(task_id, task)
 
     else:
         print("Usage:")
